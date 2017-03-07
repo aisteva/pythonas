@@ -1,0 +1,7 @@
+import sql_modulis as sql
+db = sql.connect(host="mysql-uosis.mif", port=3306, user="aiva2297", passwd="rytelis2", db="aiva2297")
+cursor = db.cursor()
+cursor.execute("SELECT version()")
+result = cursor.fetchone()
+print(result)
+db.close()
