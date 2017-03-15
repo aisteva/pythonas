@@ -1,19 +1,36 @@
 #include <Python.h>
 
-static PyObject * spam_system(PyObject *self, PyObject *args){
-	const char *command;
-	int sts;
-	if(!PyArg_ParseTuple(args, "s", &command))
-		return NULL;
-	sts = system(command);
-	if(sts < o){
-		return NULL;
-	}
-	return Py_BuildValue("i", sts);
+static PyObject *spam_system(PyObject *self, PyObject *args)
+{
+    const char *command;
+    int sts;
+
+    if (!PyArg_ParseTuple(args, "s", &command))
+        return NULL;
+    sts = system(command);
+    return PyLong_FromLong(sts);
 }
 
+//metodu lentele
 static PyMethodDef spamMethods[] = {
-	{"system", spam_system, METH_VARARGS, "Execute a shell command."},
-	{NULL, NULL, o, NULL}
+	{"system", spam_system, METH_VARARGS,
+	"Execute a shell command."},
+
+	{NULL, NULL, 0, NULL}/* Sentinel */
 };
-	
+
+//iniciavimas
+static struct PyModuleDef spammodule = {
+   PyModuleDef_HEAD_INIT,
+   "spam",   /* name of module */
+   spam_doc, /* module documentation, may be NULL */
+   -1,       /* size of per-interpreter state of the module,
+                or -1 if the module keeps state in global variables. */
+   SpamMethods
+};
+
+PyMODINIT_FUNC
+PyInit_spam(void)
+{
+    return PyModule_Create(&spammodule);
+}
