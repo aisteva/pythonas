@@ -20,17 +20,17 @@ static PyMethodDef spamMethods[] = {
 };
 
 //iniciavimas
-static struct PyModuleDef spammodule = {
+static struct PyModuleDef python = {
    PyModuleDef_HEAD_INIT,
    "spam",   /* name of module */
-   spam_doc, /* module documentation, may be NULL */
+   NULL, /* module documentation, may be NULL */
    -1,       /* size of per-interpreter state of the module,
                 or -1 if the module keeps state in global variables. */
-   SpamMethods
+   spamMethods
 };
 
 PyMODINIT_FUNC
 PyInit_spam(void)
 {
-    return PyModule_Create(&spammodule);
+    return PyModule_Create(&python);
 }
