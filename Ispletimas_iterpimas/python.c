@@ -2,36 +2,26 @@
 
 static PyObject *spam_system(PyObject *self, PyObject *args)
 {
-    int command;
+    int number;
     int sts;
-    //int result;
 
-    //result = check_prime(command);
-
-
-
-
-	printf("Hello");
-    if (!PyArg_ParseTuple(args, "i", &command))
+    if (!PyArg_ParseTuple(args, "i", &number)) //atlieka vertima
         return NULL;
-    sts = prime(command);
+    sts = prime(number);
 	printf("%d REZULTATAS \n",sts);
 	if (sts == 1 )
-	printf("%d is prime\n",command);
-else 
-printf("not prime\n");
-    return PyLong_FromLong(sts);
-
-   // if ( &command == 1 )
-     // printf("is prime.\n");
-   //else
-    //  printf("is not prime.\n");
+        printf("%d is prime number\n",number);
+    else
+        printf("%d is not prime number\n", number);
+    return PyLong_FromLong(sts); //returns integer object
 }
 
 //metodu lentele
 static PyMethodDef spamMethods[] = {
-	{"prime", spam_system, METH_VARARGS,
-	"Execute a shell command."},
+	{"prime", /* name */
+	spam_system, /* function API name */
+	METH_VARARGS, /* flag */
+	"Execute a function."},
 
 	{NULL, NULL, 0, NULL}/* Sentinel */
 };
@@ -49,19 +39,19 @@ static struct PyModuleDef python = {
 PyMODINIT_FUNC
 PyInit_spam(void)
 {
-    return PyModule_Create(&python);
+    return PyModule_Create(&python); /* python - module structure */
 }
 
 
 int prime(int a)
 {
-   int c;
+   int i;
 
-   for ( c = 2 ; c <= a - 1 ; c++ )
+   for ( i = 2 ; i <= a - 1 ; i++ )
    {
-      if ( a%c == 0 )
+      if ( a%i == 0 )
 	 return 0;
    }
-   if ( c == a )
+   if ( i == a )
       return 1;
 }
