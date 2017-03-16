@@ -2,7 +2,7 @@
 
 static PyObject *spam_system(PyObject *self, PyObject *args)
 {
-    const int *command;
+    int command;
     int sts;
     //int result;
 
@@ -11,21 +11,26 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
 
 
 
-
-    if (!PyArg_ParseTuple(args, "s", &command))
+	printf("Hello");
+    if (!PyArg_ParseTuple(args, "i", &command))
         return NULL;
-    sts = system(command);
+    sts = prime(command);
+	printf("%d REZULTATAS \n",sts);
+	if (sts == 1 )
+	printf("%d is prime\n",command);
+else 
+printf("not prime\n");
     return PyLong_FromLong(sts);
 
-    if ( command == 1 )
-      printf("is prime.\n");
-   else
-      printf("is not prime.\n");
+   // if ( &command == 1 )
+     // printf("is prime.\n");
+   //else
+    //  printf("is not prime.\n");
 }
 
 //metodu lentele
 static PyMethodDef spamMethods[] = {
-	{"system", spam_system, METH_VARARGS,
+	{"prime", spam_system, METH_VARARGS,
 	"Execute a shell command."},
 
 	{NULL, NULL, 0, NULL}/* Sentinel */
@@ -48,7 +53,7 @@ PyInit_spam(void)
 }
 
 
-int system(int a)
+int prime(int a)
 {
    int c;
 
