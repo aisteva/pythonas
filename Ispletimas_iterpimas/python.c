@@ -2,13 +2,25 @@
 
 static PyObject *spam_system(PyObject *self, PyObject *args)
 {
-    const char *command;
+    const int *command;
     int sts;
+    //int result;
+
+    //result = check_prime(command);
+
+
+
+
 
     if (!PyArg_ParseTuple(args, "s", &command))
         return NULL;
     sts = system(command);
     return PyLong_FromLong(sts);
+
+    if ( command == 1 )
+      printf("is prime.\n");
+   else
+      printf("is not prime.\n");
 }
 
 //metodu lentele
@@ -33,4 +45,18 @@ PyMODINIT_FUNC
 PyInit_spam(void)
 {
     return PyModule_Create(&python);
+}
+
+
+int system(int a)
+{
+   int c;
+
+   for ( c = 2 ; c <= a - 1 ; c++ )
+   {
+      if ( a%c == 0 )
+	 return 0;
+   }
+   if ( c == a )
+      return 1;
 }
