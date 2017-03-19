@@ -23,13 +23,13 @@ Noddy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
     self = (Noddy *)type->tp_alloc(type, 0);
     if (self != NULL) {
-        self->first = PyUnicode_FromString("");
+        self->first = PyUnicode_FromString("LABAS");
         if (self->first == NULL) {
             Py_DECREF(self);
             return NULL;
         }
 
-        self->last = PyUnicode_FromString("");
+        self->last = PyUnicode_FromString("VAKARAS");
         if (self->last == NULL) {
             Py_DECREF(self);
             return NULL;
@@ -148,7 +148,7 @@ static PyTypeObject NoddyType = {
 
 static PyModuleDef noddy2module = {
     PyModuleDef_HEAD_INIT,
-    "noddy2",
+    "noddy",
     "Example module that creates an extension type.",
     -1,
     NULL, NULL, NULL, NULL, NULL
