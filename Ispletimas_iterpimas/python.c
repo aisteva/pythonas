@@ -1,5 +1,6 @@
 #include <Python.h>
 
+static PyObject *SpamError;
 //static PyObject *SpamError;
 
 static PyObject *spam_system(PyObject *self, PyObject *args)
@@ -10,6 +11,10 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "i", &number)) //atlieka vertima
         return NULL;
     sts = prime(number);
+    if(number <  0){
+	PyErr_SetString(SpamError, "Number is out of range");
+        return NULL;
+}
 //    if (number < 0) {
 //        PyErr_SetString(SpamError, "Error. Number is below zero");
 //    return NULL;
@@ -44,6 +49,14 @@ static struct PyModuleDef python = {
 PyMODINIT_FUNC
 PyInit_spam(void)
 {
+    PyObject *m;
+
+    m = PyModule_Create(&python);
+    if (m == NULL)
+        return NULL;
+    SpamError = PyErr_NewException("spam.error", NULL, NULL);
+    Py_INCREF(SpamError);
+    PyModule_AddObject(m, "error", SpamError);
     return PyModule_Create(&python); /* python - module structure */
 }
 

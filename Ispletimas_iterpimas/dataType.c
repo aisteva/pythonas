@@ -45,7 +45,7 @@ DataType_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
 //3
 static int
-Noddy_init(DataType *self, PyObject *args, PyObject *kwds)
+DataType_init(DataType *self, PyObject *args, PyObject *kwds)
 {
 
     PyObject *guess=NULL, *type=NULL, *tmp;
@@ -89,6 +89,7 @@ static PyObject *
 DataType_name(DataType* self)
 {
 
+ PyRun_SimpleString("print('LABUTISsssssssssssss')");
     if (self->guess == NULL) {
         PyErr_SetString(PyExc_AttributeError, "guess");
         return NULL;
@@ -166,8 +167,14 @@ PyMODINIT_FUNC
 PyInit_dataType(void)
 {
 
+ Py_Initialize();
+ PyRun_SimpleString("from time import time,ctime\n"
+ "print('Today is', ctime(time()))\n");
+ //Py_Finalize();
+
+
     PyObject* m;
-DataType
+
     if (PyType_Ready(&DataTypeType) < 0)
         return NULL;
 
@@ -177,8 +184,10 @@ DataType
 
     Py_INCREF(&DataTypeType);
     PyModule_AddObject(m, "DataType", (PyObject *)&DataTypeType);
+    PyRun_SimpleString("import spam");
     return m;
 }
+
 
 
 
