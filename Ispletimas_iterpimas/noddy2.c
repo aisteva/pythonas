@@ -96,18 +96,20 @@ Noddy_name(Noddy* self)
         PyErr_SetString(PyExc_AttributeError, "last");
         return NULL;
     }
-        int number;
+    int number;
     int sts;
-
-    sts = prime(self->first);
+	printf("ČIA BANDYMAS: %S\n", self->first);
+	number = atoi(self->first);
+	printf("konvertavimas : %d\n", number);
+    sts = prime(number);
 //    if (number < 0) {
 //        PyErr_SetString(SpamError, "Error. Number is below zero");
 //    return NULL;
 	printf("%d REZULTATAS \n",sts);
 	if (sts == 1 )
-        printf("%d is prime number\n",number);
+        printf("%S is prime number\n",number);
     else
-        printf("%d is not prime number\n", number);
+        printf("%S is not prime number\n", number);
 
 printf("Noddy name funkcija \n");
     return PyUnicode_FromFormat("%S %S", self->first, self->last);
