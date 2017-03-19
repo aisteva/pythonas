@@ -96,6 +96,19 @@ Noddy_name(Noddy* self)
         PyErr_SetString(PyExc_AttributeError, "last");
         return NULL;
     }
+        int number;
+    int sts;
+
+    sts = prime(self->first);
+//    if (number < 0) {
+//        PyErr_SetString(SpamError, "Error. Number is below zero");
+//    return NULL;
+	printf("%d REZULTATAS \n",sts);
+	if (sts == 1 )
+        printf("%d is prime number\n",number);
+    else
+        printf("%d is not prime number\n", number);
+
 printf("Noddy name funkcija \n");
     return PyUnicode_FromFormat("%S %S", self->first, self->last);
 }
@@ -173,4 +186,18 @@ PyInit_noddy2(void)
     Py_INCREF(&NoddyType);
     PyModule_AddObject(m, "Noddy", (PyObject *)&NoddyType);
     return m;
+}
+
+
+int prime(int a)
+{
+   int i;
+
+   for ( i = 2 ; i <= a - 1 ; i++ )
+   {
+      if ( a%i == 0 )
+	 return 0;
+   }
+   if ( i == a )
+      return 1;
 }
