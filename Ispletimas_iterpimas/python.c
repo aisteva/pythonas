@@ -1,6 +1,6 @@
 #include <Python.h>
 
-static PyObject *SpamError;
+//static PyObject *SpamError;
 
 static PyObject *spam_system(PyObject *self, PyObject *args)
 {
@@ -10,9 +10,9 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "i", &number)) //atlieka vertima
         return NULL;
     sts = prime(number);
-    if (number < 0) {
-        PyErr_SetString(SpamError, "Error. Number is below zero");
-    return NULL;
+//    if (number < 0) {
+//        PyErr_SetString(SpamError, "Error. Number is below zero");
+//    return NULL;
 	printf("%d REZULTATAS \n",sts);
 	if (sts == 1 )
         printf("%d is prime number\n",number);

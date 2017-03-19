@@ -155,7 +155,7 @@ static PyModuleDef noddy2module = {
 };
 
 PyMODINIT_FUNC
-PyInit_noddy2(void)
+PyInit_noddy(void)
 {
     PyObject* m;
 
