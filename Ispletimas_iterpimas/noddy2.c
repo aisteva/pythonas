@@ -19,6 +19,7 @@ Noddy_dealloc(Noddy* self)
 static PyObject *
 Noddy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
+printf("Noddy_new funkcija\n");
     Noddy *self;
 
     self = (Noddy *)type->tp_alloc(type, 0);
@@ -44,6 +45,7 @@ Noddy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 static int
 Noddy_init(Noddy *self, PyObject *args, PyObject *kwds)
 {
+printf("Noddy init funkcija \n");
     PyObject *first=NULL, *last=NULL, *tmp;
 
     static char *kwlist[] = {"first", "last", "number", NULL};
@@ -84,6 +86,7 @@ static PyMemberDef Noddy_members[] = {
 static PyObject *
 Noddy_name(Noddy* self)
 {
+
     if (self->first == NULL) {
         PyErr_SetString(PyExc_AttributeError, "first");
         return NULL;
@@ -93,7 +96,7 @@ Noddy_name(Noddy* self)
         PyErr_SetString(PyExc_AttributeError, "last");
         return NULL;
     }
-
+printf("Noddy name funkcija \n");
     return PyUnicode_FromFormat("%S %S", self->first, self->last);
 }
 
@@ -157,6 +160,7 @@ static PyModuleDef noddy2module = {
 PyMODINIT_FUNC
 PyInit_noddy2(void)
 {
+	printf("VOID FUNKCIJA: \n");
     PyObject* m;
 
     if (PyType_Ready(&NoddyType) < 0)
