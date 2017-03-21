@@ -89,7 +89,7 @@ static PyObject *
 DataType_name(DataType* self)
 {
 
-// PyRun_SimpleString("print('LABUTISsssssssssssss')");
+
     if (self->guess == NULL) {
         PyErr_SetString(PyExc_AttributeError, "guess");
         return NULL;
@@ -168,8 +168,7 @@ PyInit_dataType(void)
 {
 
  Py_Initialize();
- PyRun_SimpleString("from time import time,ctime\n"
- "print('Today is', ctime(time()))\n");
+
  //Py_Finalize();
 
 
@@ -184,7 +183,7 @@ PyInit_dataType(void)
 
     Py_INCREF(&DataTypeType);
     PyModule_AddObject(m, "DataType", (PyObject *)&DataTypeType);
-    PyRun_SimpleString("import spam");
+    PyRun_SimpleString("import prime");
     return m;
 }
 

@@ -1,9 +1,9 @@
 #include <Python.h>
 
-static PyObject *SpamError;
-//static PyObject *SpamError;
+static PyObject *PrimeError;
 
-static PyObject *spam_system(PyObject *self, PyObject *args)
+
+static PyObject *prime_system(PyObject *self, PyObject *args)
 {
     int number;
     int sts;
@@ -12,13 +12,10 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
         return NULL;
     sts = prime(number);
     if(number <  0){
-	PyErr_SetString(SpamError, "Number is out of range");
+	PyErr_SetString(PrimeError, "Number is out of range");
         return NULL;
 }
-//    if (number < 0) {
-//        PyErr_SetString(SpamError, "Error. Number is below zero");
-//    return NULL;
-//	printf("%d REZULTATAS \n",sts);
+
 	if (sts == 1 )
         printf("%d is prime number\n",number);
     else
@@ -27,9 +24,9 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
 }
 
 //metodu lentele
-static PyMethodDef spamMethods[] = {
+static PyMethodDef primeMethods[] = {
 	{"prime", /* name */
-	spam_system, /* function API name */
+	prime_system, /* function API name */
 	METH_VARARGS, /* flag */
 	"Execute a function."},
 
@@ -39,11 +36,11 @@ static PyMethodDef spamMethods[] = {
 //iniciavimas
 static struct PyModuleDef python = {
    PyModuleDef_HEAD_INIT,
-   "spam",   /* name of module */
+   "prime",   /* name of module */
    NULL, /* module documentation, may be NULL */
    -1,       /* size of per-interpreter state of the module,
                 or -1 if the module keeps state in global variables. */
-   spamMethods
+   primeMethods
 };
 
 PyMODINIT_FUNC
@@ -54,9 +51,9 @@ PyInit_spam(void)
     m = PyModule_Create(&python);
     if (m == NULL)
         return NULL;
-    SpamError = PyErr_NewException("spam.error", NULL, NULL);
-    Py_INCREF(SpamError);
-    PyModule_AddObject(m, "error", SpamError);
+    PrimeError = PyErr_NewException("prime.error", NULL, NULL);
+    Py_INCREF(PrimeError);
+    PyModule_AddObject(m, "error", PrimeError);
     return PyModule_Create(&python); /* python - module structure */
 }
 
