@@ -183,7 +183,7 @@ PyInit_dataType(void)
 
     Py_INCREF(&DataTypeType);
     PyModule_AddObject(m, "DataType", (PyObject *)&DataTypeType);
-    PyRun_SimpleString("import prime");
+   // PyRun_SimpleString("import prime");
     return m;
 }
 
