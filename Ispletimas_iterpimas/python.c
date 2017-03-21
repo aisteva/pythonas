@@ -18,7 +18,7 @@ static PyObject *spam_system(PyObject *self, PyObject *args)
 //    if (number < 0) {
 //        PyErr_SetString(SpamError, "Error. Number is below zero");
 //    return NULL;
-	printf("%d REZULTATAS \n",sts);
+//	printf("%d REZULTATAS \n",sts);
 	if (sts == 1 )
         printf("%d is prime number\n",number);
     else

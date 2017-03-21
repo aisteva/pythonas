@@ -89,7 +89,7 @@ static PyObject *
 DataType_name(DataType* self)
 {
 
- PyRun_SimpleString("print('LABUTISsssssssssssss')");
+// PyRun_SimpleString("print('LABUTISsssssssssssss')");
     if (self->guess == NULL) {
         PyErr_SetString(PyExc_AttributeError, "guess");
         return NULL;
