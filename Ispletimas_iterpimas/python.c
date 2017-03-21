@@ -20,6 +20,7 @@ static PyObject *prime_system(PyObject *self, PyObject *args)
         printf("%d is prime number\n",number);
     else
         printf("%d is not prime number\n", number);
+
     return PyLong_FromLong(sts); //returns integer object
 }
 
@@ -44,7 +45,7 @@ static struct PyModuleDef python = {
 };
 
 PyMODINIT_FUNC
-PyInit_spam(void)
+PyInit_prime(void)
 {
     PyObject *m;
 
