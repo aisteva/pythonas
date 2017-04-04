@@ -1,19 +1,21 @@
+# 1. Sukurti lentelę +
+# 2 .Užpildyti lentelę duomenimis +
+# 3 .Ištrinti pasirinktą elementą
+# 4 .Ištrinti visus elementus
+# 5 .Sunaikinti lentelę
+
 import pymysql as sql
-<<<<<<< HEAD
-db = sql.connect(host='mysql-uosis.lt', port=3306, user='aiva2297', passwd='', db='aiva2297')
-=======
-db = sql.connect(host="mysql-uosis.mif", port=3306, user="aiva2297", passwd="Rytelis2", db="aiva2297")
->>>>>>> e96620bd71f657b694f416e5cdb56c64971afc33
+
+db = sql.connect(host='localhost', port=3306, user='root', passwd='', db='python')
+
 cursor = db.cursor()
-cursor.execute("SELECT version()")
+#cursor.execute("SELECT version()")
 result = cursor.fetchone()
 
-
-# Create table as per requirement
-#sql = """CREATE TABLE PEOPLE (
- #        FIRST_NAME  CHAR(20),
- #        LAST_NAME  CHAR(20),
- #        AGE INT  )"""
+cursor.execute("""CREATE TABLE IF NOT EXISTS PEOPLE (
+         FIRST_NAME  CHAR(20),
+         LAST_NAME  CHAR(20),
+         AGE INT  )""")
 		 
 # Prepare SQL query to INSERT a record into the database.
 sql = """INSERT INTO PEOPLE(FIRST_NAME,
@@ -27,6 +29,8 @@ try:
 except:
    # Rollback in case there is any error
    db.rollback()
+
+
 
 print(result)
 db.close()
