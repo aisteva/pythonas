@@ -9,28 +9,27 @@ import pymysql as sql
 db = sql.connect(host='localhost', port=3306, user='root', passwd='', db='python')
 
 cursor = db.cursor()
-#cursor.execute("SELECT version()")
-result = cursor.fetchone()
 
-cursor.execute("""CREATE TABLE IF NOT EXISTS PEOPLE (
-         FIRST_NAME  CHAR(20),
-         LAST_NAME  CHAR(20),
-         AGE INT  )""")
-		 
-# Prepare SQL query to INSERT a record into the database.
-sql = """INSERT INTO PEOPLE(FIRST_NAME,
-         LAST_NAME, AGE)
-         VALUES ('Jonas', 'Joninis', 25)"""
+name = str(input('Enter name: '))
+lastname = str(input('Enter last name: '))
+age = int(input('Enter age: '))
+
+sql = """CREATE TABLE IF NOT EXISTS PEOPLE (
+    FIRST_NAME CHAR(20),
+    LAST_NAME CHAR(20),
+    AGE INT)"""
+sql1 = """INSERT INTO PEOPLE (FIRST_NAME, LAST_NAME, AGE) VALUES ('%s', '%s', %d)""" % (name, lastname, age)
+	
 try:
-   # Execute the SQL command
-   cursor.execute(sql)
-   # Commit your changes in the database
-   db.commit()
+# Execute the SQL commands
+    cursor.execute(sql)
+    print("Table created")
+    cursor.execute(sql1)
+    print("Data inserted")
+# Commit your changes in the database
+    db.commit()
 except:
    # Rollback in case there is any error
-   db.rollback()
+    db.rollback()
 
-
-
-print(result)
 db.close()
