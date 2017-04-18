@@ -14,6 +14,6 @@ try:
 
     print(result)
 except:
-	print("Printing error")
+	print("Printing error. No table exists.")
 
 db.close()

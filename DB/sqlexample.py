@@ -14,7 +14,7 @@ name = str(input('Enter name: '))
 lastname = str(input('Enter last name: '))
 age = int(input('Enter age: '))
 
-sql2 = """SELECT * FROM PEOPLE"""
+
 sql = """CREATE TABLE IF NOT EXISTS PEOPLE (
     FIRST_NAME CHAR(20),
     LAST_NAME CHAR(20),
@@ -28,16 +28,9 @@ try:
     print("Table created")
     cursor.execute(sql1)
     print("Data inserted")
-    cursor.execute(sql2)
-    result = cursor.fetchall()
-    for row in results:
-        name = row[0]
-        last = row[1]
-        age = row[2]
 # Commit your changes in the database
     db.commit()
 
-    print("name = %s, last = %s, age = %d" % (name, last, age))
 except:
    # Rollback in case there is any error
     db.rollback()
