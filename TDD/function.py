@@ -13,7 +13,7 @@ def oddNumer(x):
     >>> oddNumer(6)
     False
 
-    >>> oddNumer(5)
+    >>> oddNumer(5.6)
     Traceback (most recent call last):
         ...
     ValueError: n must be exact integer
