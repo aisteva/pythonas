@@ -5,7 +5,7 @@ from django.template import loader
 from django.http import Http404
 
 def index(request):
-    latest_aktas_list = Aktas.objects.order_by('-pub_date')[:5]
+    latest_aktas_list = Aktas.objects.order_by('-data')[:5]
     template = loader.get_template('polls/index.html')
     context = { 'latest_aktas_list':latest_aktas_list, }
 #output = ','.join([a.pavadinimas for a in latest_aktas_list])
