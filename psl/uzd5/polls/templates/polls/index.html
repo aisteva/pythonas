@@ -1,0 +1,9 @@
+{% if latest_aktas_list %}
+    <ul> 
+    {% for question in latest_aktas_list %} 
+        <li><a"href="/polls/{{aktas.id }}/">{{ aktas.pavadinimas }}</a></li> 
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>polls nepasiekiamas.</p>
+{% endif %}
