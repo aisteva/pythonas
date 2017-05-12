@@ -1,0 +1,6 @@
+<h1>{{ aktas.pavadinimas }}</h1>
+<ul>
+{% for vieta in aktas.vieta_set.all %}
+    <li>{{ vieta.padalinys }}</li>
+{% endfor %}
+</ul>

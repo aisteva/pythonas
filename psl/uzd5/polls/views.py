@@ -7,12 +7,15 @@ from django.http import Http404
 def index(request):
     latest_aktas_list = Aktas.objects.order_by('-pub_date')[:5]
     template = loader.get_template('polls/index.html')
-    #context = { 'latest_aktas_list':latest_aktas_list, }
+    context = { 'latest_aktas_list':latest_aktas_list, }
 #output = ','.join([a.pavadinimas for a in latest_aktas_list])
     return render(request, 'polls/index.html', context)
-	
+
+
 def detail(request, aktas_id):
-    return HttpResponse("Matomas klausimas, kurio id {0}.".format(aktas_id))
+    aktas = get_object_or_404(Aktas, pk = aktas_id)
+    return render(request, 'polls/detail.html', {'aktas': aktas})
+
 	
 	
 def results(request, aktas_id):
