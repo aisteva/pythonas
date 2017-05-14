@@ -26,7 +26,7 @@ def index(request):
 def detail(request, aktas_id):
     aktas = get_object_or_404(Aktas, pk = aktas_id)
     total = aktas.vertybe.all().aggregate(Sum('suma'))
-    return render(request, 'polls/detail.html', {'aktas': aktas})
+    return render(request, 'polls/detail.html', {'aktas': aktas, 'total': total})
 	
 	
 def detailPDF(request, aktas_id):
