@@ -1,6 +1,82 @@
-<h1>{{ aktas.pavadinimas }}</h1>
-<ul>
-{% for vieta in aktas.vieta_set.all %}
-    <li>{{ vieta.padalinys }}</li>
+{% load mathfilters %}
+<div align="right"><p align="left" >Patvirtinta {{aktas.istaiga}} direktoriaus</br>
+{{aktas.data|date:"Y-m-d" }} įsakymu Nr. {{aktas.istatymo_nr}}</br>
+</br>
+<strong>TVIRTINU:</strong></br>
+{{aktas.istaiga}} direktorius</br>
+{{aktas.data|date:"Y m d" }}</p></div>
+<h2 align="center">{{aktas.istaiga}}</br> MATERIALINIŲ VERTYBIŲ NURAŠYMO AKTAS
+</h2>
+<p>Komisija patvirtinta {{aktas.data|date:"Y-m-d" }} įstatymu Nr. {{aktas.istatymo_nr}} 
+„Dėl komisijos sudarymo materialinių vertybių nurašymui", 
+komisijos pirmininkas {{aktas.pirmininkas.vardas}} {{aktas.pirmininkas.pavarde}}, 
+{% for narys in aktas.nariai.all %}
+    {{ narys.vardas }} {{narys.pavarde}} - {{narys.pareigos}},
 {% endfor %}
-</ul>
+nustatė, kad per {{aktas.metai}} m. {{aktas.menesis}} mėn. {{aktas.padalinys}} sunaudojo:
+</p>
+<table border=1>
+<tr>
+	<th>Eil. Nr</th>
+	<th>Materialinės vertybės pavadinimas</th>
+	<th>Mato vnt.</th>
+	<th>Kiekis</th>
+	<th width="20px">Kaina</th>
+	<th>Suma su PVM EUR</th>
+	<th>Panaudojimo tikslas ir vieta</th>
+</tr>
+{% for vertybe in aktas.vertybe.all %}
+<tr>
+	<td>{{ vertybe.vertybe_nr }}</td>
+	<td>{{ vertybe.pavadinimas }}</td>
+	<td>{{ vertybe.vnt }}</td>	
+	<td>{{ vertybe.kiekis }}</td>
+	<td>{{vertybe.suma|div:vertybe.kiekis|floatformat:'-2'}}</td>
+	<td>{{ vertybe.suma }}</td>
+	<td>{{ vertybe.tikslas }}</td>	
+</tr>	
+{% endfor %}
+<tr>
+	<td></td>
+	<td>Iš viso:</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td>{{total}}</td>	
+	<td></td>
+</tr>	
+</table>
+<p>Pagal pirkimo dokumentus:</br>
+{% for dokumentas in aktas.pirkimo_dokumentai.all %}
+    {{ dokumentas.pardavejas }} PVM s.f. {{dokumentas.serija}} Nr.{{dokumentas.numeris}}, 
+	{{dokumentas.pirkimo_data|date:"Y m d"}};</br>
+{% endfor %}
+</p>
+
+<table>
+<tr>
+	<td width="40%">Komisijos pirmininkas</td>
+	<td width="40%">__________________________</td>
+	<td width="40%">{{aktas.pirmininkas.vardas}} {{aktas.pirmininkas.pavarde}}</td>	
+</tr>
+{% for narys in aktas.nariai.all %}
+<tr>
+    {% if forloop.first %}
+	<td width="40%">Nariai</td>
+	{% else %}
+	<td width="40%"></td>	
+    {% endif %}
+
+	<td width="40%">__________________________</td>
+	<td width="40%">{{narys.vardas}} {{narys.pavarde}}</td>	
+</tr>	
+{% endfor %}
+</table>
+<table>
+</br>
+<tr>
+	<td width="39.4%">Mat. atsakingas</td>
+	<td width="40%"></td>
+	<td width="40%">{{aktas.vieta.naudotojas}}</td>	
+</tr>	
+</table>
