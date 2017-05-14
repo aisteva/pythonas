@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from polls.views import AktasCreate, GeneratePDF
+from polls.views import AktasCreate
 
 
 urlpatterns = [url(r'^$', views.index, name='index'),

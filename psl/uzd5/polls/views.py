@@ -6,7 +6,6 @@ from django.http import Http404
 from django.db.models import Sum
 from django.views.generic.edit import CreateView
 from django.views.generic import View
-from xhtml2pdf import pisa 
 from django.template.loader import get_template
 from polls.utils import render_to_pdf #created in step 4
 
@@ -23,15 +22,6 @@ def index(request):
     return render(request, 'polls/index.html', context)
 	
 
-
-
-class GeneratePDF(View):
-    def get(self, request, *args, **kwargs):
-        latest_aktas_list = Aktas.objects.order_by('-data')[:5]
-        template = loader.get_template('polls/index.html')
-        context = { 'latest_aktas_list':latest_aktas_list, }
-        html = template.render(context)
-        return HttpResponse(html)
 
 def detail(request, aktas_id):
     aktas = get_object_or_404(Aktas, pk = aktas_id)
