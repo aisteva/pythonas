@@ -32,7 +32,7 @@ def detail(request, aktas_id):
 def detailPDF(request, aktas_id):
     aktas = get_object_or_404(Aktas, pk = aktas_id)
     total = aktas.vertybe.all().aggregate(Sum('suma'))
-    pdf = render_to_pdf('polls/detail.html', {'aktas': aktas, 'total': total}})
+    pdf = render_to_pdf('polls/detail.html', {'aktas': aktas, 'total': total})
     return HttpResponse(pdf, content_type = 'application/pdf')
 
 	
