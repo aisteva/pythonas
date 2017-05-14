@@ -1,25 +1,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 {% load mathfilters %}
 <div align="right"><p align="left" >Patvirtinta {{aktas.istaiga}} direktoriaus</br>
-{{aktas.data|date:"Y-m-d" }} įsakymu Nr. {{aktas.istatymo_nr}}</br>
+{{aktas.data|date:"Y-m-d" }} isakymu Nr. {{aktas.istatymo_nr}}</br>
 </br>
 <strong>TVIRTINU:</strong></br>
 {{aktas.istaiga}} direktorius</br>
 {{aktas.data|date:"Y m d" }}</p></div>
-<h2 align="center">{{aktas.istaiga}}</br> MATERIALINIŲ VERTYBIŲ NURAŠYMO AKTAS
+<h2 align="center">{{aktas.istaiga}}</br> MATERIALINIU VERTYBIU NURA�YMO AKTAS
 </h2>
-<p>Komisija patvirtinta {{aktas.data|date:"Y-m-d" }} įstatymu Nr. {{aktas.istatymo_nr}} 
-"Dėl komisijos sudarymo materialinių vertybių nurašymui", 
+<p>Komisija patvirtinta {{aktas.data|date:"Y-m-d" }} istatymu Nr. {{aktas.istatymo_nr}} 
+"Del komisijos sudarymo materialiniu vertybiu nura�ymui", 
 komisijos pirmininkas {{aktas.pirmininkas.vardas}} {{aktas.pirmininkas.pavarde}}, 
 {% for narys in aktas.nariai.all %}
     {{ narys.vardas }} {{narys.pavarde}} - {{narys.pareigos}},
 {% endfor %}
-nustatė, kad per {{aktas.metai}} m. {{aktas.menesis}} mėn. {{aktas.padalinys}} sunaudojo:
+nustate, kad per {{aktas.metai}} m. {{aktas.menesis}} men. {{aktas.padalinys}} sunaudojo:
 </p>
 <table border=1>
 <tr>
 	<th>Eil. Nr</th>
-	<th>Materialinės vertybės pavadinimas</th>
+	<th>Materialines vertybes pavadinimas</th>
 	<th>Mato vnt.</th>
 	<th>Kiekis</th>
 	<th width="20px">Kaina</th>
@@ -39,7 +39,7 @@ nustatė, kad per {{aktas.metai}} m. {{aktas.menesis}} mėn. {{aktas.padalinys}}
 {% endfor %}
 <tr>
 	<td></td>
-	<td>Iš viso:</td>
+	<td>I� viso:</td>
 	<td></td>
 	<td></td>
 	<td></td>
