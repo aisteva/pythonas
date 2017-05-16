@@ -8,12 +8,13 @@ from django.views.generic.edit import CreateView
 from django.views.generic import View
 from django.template.loader import get_template
 from polls.utils import render_to_pdf #created in step 4
+from django.contrib.auth.decorators import login_required
 
 class AktasCreate(CreateView):
         model = Aktas
         fields = '__all__'
 		
-		
+@login_required
 def index(request):
     latest_aktas_list = Aktas.objects.order_by('-data')[:5]
     template = loader.get_template('polls/index.html')
@@ -22,13 +23,13 @@ def index(request):
     return render(request, 'polls/index.html', context)
 	
 
-
+@login_required
 def detail(request, aktas_id):
     aktas = get_object_or_404(Aktas, pk = aktas_id)
     total = aktas.vertybe.all().aggregate(Sum('suma'))
     return render(request, 'polls/detail.html', {'aktas': aktas, 'total': total})
 	
-	
+@login_required
 def detailPDF(request, aktas_id):
     aktas = get_object_or_404(Aktas, pk = aktas_id)
     total = aktas.vertybe.all().aggregate(Sum('suma'))

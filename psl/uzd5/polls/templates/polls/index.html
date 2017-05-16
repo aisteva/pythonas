@@ -1,4 +1,5 @@
 {% if latest_aktas_list %}
+<p>Šiuo metu prisijungęs vartotojas: {{user.first_name}} {{user.last_name}} </p>
     <ul> 
     {% for aktas in latest_aktas_list %} 
     <li><a href="/polls/p/{{ aktas.id }}/">{{ aktas.pavadinimas }} (PDF)</a></li>    
@@ -10,5 +11,9 @@
 {% endif %}
 
 <button><a href="/polls/aktas/add/">Pridėti naują aktą</a></button>
+
+<button><a href="/accounts/logout/">Atsijungti</a></button>
+
+
 
 
